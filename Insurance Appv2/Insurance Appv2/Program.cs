@@ -5,12 +5,12 @@ namespace DeviceInsuranceCalculator
     class Program
     {
         // Methods and functions
-
+        // Ask user if input is correct if not prints error and ask user if they want to add another device or exit
         static string CheckProceed()
         {
             while (true)
             {
-                Console.WriteLine("Press <ENTER> to add another employee or type 'x' to exit");
+                Console.WriteLine("Press <ENTER> to add another device or type 'x' to exit");
                 string CheckProceed = Console.ReadLine();
 
                 CheckProceed = CheckProceed.ToUpper();
@@ -26,20 +26,25 @@ namespace DeviceInsuranceCalculator
 
 
         }
-
+        
         static void OneDevice()
         {
-            
-            
 
-                int deviceType = CheckInt("Choose a device type:\n" +
-                "1 = Laptop\n" +
-                "2 = Desktop\n" +
-                "3 = Phone/Drone",1,3);
+            // Lets user choose device category
+            List<string> CATEGORY = new List<string>()
+            {
+                    "Desktop", "Laptop", "Phone/Drone"
+            };
+            CATEGORY.AsReadOnly();
+
+            int deviceType = CheckInt("Choose a device type:\n" +
+                $"1 = {CATEGORY[0]}\n" +
+                $"2 = {CATEGORY[1]}\n" +
+                $"3 = {CATEGORY[2]}\n", 1, 3);
 
 
 
-                Console.WriteLine($"Enter the name of the device:\n");
+            Console.WriteLine($"Enter the name of the device:\n");
                 string deviceName = Console.ReadLine();
 
                     
@@ -73,7 +78,7 @@ namespace DeviceInsuranceCalculator
             
 
         }
-
+        //This check if user enters within parameter if not it errors
         static float CheckFloat(string question, float min, float max)
         {
             while (true)
@@ -109,7 +114,7 @@ namespace DeviceInsuranceCalculator
             }
 
         }
-
+        //Check if user enter in parameter if not error
         static int CheckInt(string question, int min, int max)
         {
             while (true)
@@ -145,7 +150,7 @@ namespace DeviceInsuranceCalculator
             }
 
         }
-
+        //Insure device check if user has more than 5 as well gives discounted rate
         static float InsureDevice(float quantity, float Cost)
         {
             float deviceInsurance = 0;
@@ -169,7 +174,7 @@ namespace DeviceInsuranceCalculator
 
 
 
-        // Main process or when ru
+        // Main process or when run
 
         static void Main(string[] args)
         {
